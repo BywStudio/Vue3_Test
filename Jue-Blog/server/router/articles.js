@@ -71,4 +71,55 @@ router.delete('/remove/:id', async (req, res ,next) => {
     next(err)
   }
 })
+// 文章列表接口
+router.get('/list', async (req, res, next) => {
+  let { user_id } = req.query
+  try{
+    let result = await ArtsModel.aggregate([
+      // 关联查询评论集合
+      {
+        $lookup: {
+          from: 'comments',
+          localField: '_id',
+          foreignField: 'source_id',
+          as: 'comments'
+        },
+      },
+      // 关联查询点赞集合
+      {
+        $lookup: {
+          from: 'praises',
+          localField: '_id',
+          foreignField: 'target_id',
+          as: 'praises'
+        },
+      },
+      // 处理点赞和评论数据
+      {
+        $addFields: {
+          praises: {
+            $filter: {
+              input: '$praises',
+              as: 'arrs',
+              cond: { $eq: ['$$arrs.type', 1]}
+            }
+          },
+          comments: { $size: '$comments' }
+        }
+      },
+      // 返回点赞数量和当前用户是否点赞
+      {
+        $addFields: {
+          is_praise: {
+            $in: [ObjectId(user_id), '$praises.created_by']
+          },
+          praises: { $size: '$praises'}
+        }
+      }
+    ])
+    res.send(result)
+  }catch(err){
+    next(err)
+  }
+})
 module.exports = router
