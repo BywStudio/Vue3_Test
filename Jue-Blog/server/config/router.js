@@ -6,13 +6,14 @@ const userRouter = require('../router/users')
 const artsRouter = require('../router/articles')
 const praisRouter = require('../router/praises')
 const commsRouter = require('../router/comments')
-
+const stmsgsRouter = require('../router/shortmsgs')
 
 const router = (app) => {
   app.use('/users', userRouter)
   app.use('/arts', artsRouter)
   app.use('/praises', praisRouter)
   app.use('/comments', commsRouter)
+  app.use('/stmsgs', stmsgsRouter)
 }
 
 module.exports = router
