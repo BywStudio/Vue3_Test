@@ -3,6 +3,7 @@ const router = express.Router()
 
 const CommsModel = require('../model/comments')
 const UsersModel = require('../model/users')
+const MessModel = require('../model/messages')
 
 const { filterJson } = require('../utils/index')
 
@@ -15,6 +16,12 @@ router.post('/create', async (req, res, next) => {
   try{
     let { target_user, type } = body
     let result = await CommsModel.create(body)
+    // 新增添加消息
+    await MessModel.create({
+      source_id: result._id,
+      type: 1,
+      user_id: body.target_user
+    })
     res.send(result)
     if(type == 'source') {
       await UsersModel.findByIdAndUpdate(target_user, {
