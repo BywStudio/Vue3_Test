@@ -74,7 +74,7 @@ router.delete('/remove/:id', async (req, res ,next) => {
 })
 // 文章列表接口
 router.get('/list', async (req, res, next) => {
-  let { user_id } = req.query
+  let user_id = req.auth._id
   try{
     let result = await ArtsModel.aggregate([
       // 关联查询评论集合

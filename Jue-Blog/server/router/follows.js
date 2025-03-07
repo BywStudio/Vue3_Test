@@ -36,7 +36,7 @@ router.post('/toggle', async (req, res, next) => {
 })
 // 获取关注列表
 router.get('/list/:id', async (req, res, next) => {
-  let user_id = req.params.id
+  let user_id = req.auth._id
   let { per_page, page } = req.query
   try {
     per_page = +per_page || 10

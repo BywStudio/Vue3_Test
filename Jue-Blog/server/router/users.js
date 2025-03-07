@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var UsersModel = require('../model/users')
+const { genoJwt } = require('../utils/jwt')
 
 
 
@@ -36,9 +37,13 @@ router.post('/login', async (req, res, next) => {
     password = encrypt(password)
     let result = await UsersModel.findOne({ phone, password })
     if(result) {
+      // 改造这里，验证 token 登录
+      let { _id, username } = result
+      let token = genoJwt({ _id, username })
       res.send({
         code: 200,
-        data: result
+        data: result,
+        token: token
       })
     }else {
       res.send({

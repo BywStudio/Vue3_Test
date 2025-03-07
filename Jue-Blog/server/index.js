@@ -5,6 +5,9 @@ const port = 9000
 
 const mongoose = require('mongoose');
 
+// 验证 token
+const { verifyJwt } = require('./utils/jwt')
+
 
 // cors、body-parser
 const cors = require('cors')
@@ -13,6 +16,13 @@ const bodyParser = require('body-parser')
 // 要在 cors 之前使用
 app.use(bodyParser.json())
 app.use(cors())
+
+// 验证 token 中间件
+app.use(
+  verifyJwt().unless({
+    oath: ['/users/create', '/users/login']
+  })
+)
 
 // 使用 mongoDB
 mongoose.connect('mongodb://localhost:27017', { 
