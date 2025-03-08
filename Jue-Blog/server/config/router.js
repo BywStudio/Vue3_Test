@@ -1,7 +1,7 @@
 const { Types } = require('mongoose')
 global.ObjectId = id => new Types.ObjectId(id)
 
-
+const homeRouter = require('../router/home')
 const userRouter = require('../router/users')
 const artsRouter = require('../router/articles')
 const praisRouter = require('../router/praises')
@@ -11,6 +11,7 @@ const messRouter = require('../router/messages')
 const followsRouter = require('../router/follows')
 
 const router = (app) => {
+  app.use('/', homeRouter)
   app.use('/users', userRouter)
   app.use('/arts', artsRouter)
   app.use('/praises', praisRouter)

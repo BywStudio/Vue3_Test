@@ -3,9 +3,10 @@
 </script>
 
 <template>
+  <el-button>按钮</el-button>
   <RouterView />
 </template>
 
-<style scoped>
+<style scoped lang="less">
 
 </style>
