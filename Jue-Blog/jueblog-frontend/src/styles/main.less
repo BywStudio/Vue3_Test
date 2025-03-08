@@ -1,14 +1,12 @@
-//out:false
 @import 'element-plus/dist/index.css';
 @import './variable.css';
-
 
 html {
   font-size: 12px;
 }
 
 body {
-  background-color: #f5f5f5;
+  background: #f5f5f5;
   margin: 0;
   -webkit-font-smoothing: unset !important;
   font-family: -apple-system, system-ui, Segoe UI, Roboto, Ubuntu, Cantarell,
@@ -29,13 +27,19 @@ li {
   padding: 0;
 }
 
-h1,h2,h3,h4,h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
   color: var(--font-color1);
 }
 
 p {
   color: var(--font-color3);
+  margin: 0;
+  line-height: 22px;
 }
 
 .el-button {
@@ -59,12 +63,13 @@ p {
 }
 
 #root-layout {
+  // overflow: auto;
   #header-layout {
     position: fixed;
     left: 0;
     right: 0;
     top: 0px;
-    background-color: #fff;
+    background: #fff;
     box-shadow: 0 2px 8px #f2f3f5;
     z-index: 2000;
   }
@@ -108,7 +113,7 @@ p {
   background: #fff;
 }
 
-.cus-ttabs-header {
+.cus-tabs-header {
   border-bottom: 1px solid #eee;
   padding: 12px 12px;
   ul {
@@ -126,6 +131,7 @@ p {
           content: '';
           position: absolute;
           left: 38%;
+          right: 38%;
           bottom: -12px;
           height: 3px;
           background: var(--el-color-primary);
@@ -135,6 +141,7 @@ p {
     }
   }
 }
+
 .hover {
   color: var(--font-color2);
   cursor: pointer;
@@ -146,11 +153,11 @@ p {
   }
 }
 
-.el-message-box_message {
+.el-message-box__message {
   margin-bottom: 10px;
   font-size: 16px;
 }
-.el-message-box_header {
+.el-message-box__header {
   svg {
     font-size: 22px;
     margin-top: 2px;

@@ -1,32 +1,47 @@
 import axios, { type AxiosInstance } from 'axios'
 import { ElMessage } from 'element-plus'
+import { userStore } from '@/stores'
 
 const instance: AxiosInstance = axios.create({
-  baseURL: 'https://xxxx',
+  baseURL: 'http://localhost:9000',
   timeout: 15000,
   headers: {
-    'Content-type': 'application/json',
+    'Content-Type': 'application/json',
   },
 })
+
 // 请求拦截器
 instance.interceptors.request.use(request => {
-  request.headers.Authorization = 'Bearer' + (localStorage.token || '')
+  if (request.data instanceof FormData) {
+    request.headers['Content-Type'] = 'multipart/form-data'
+  }
+  request.headers.Authorization = 'Bearer ' + (localStorage.jueblog_token || '')
   return request
 })
-// 响应拦截器
+
+// 响应拦截器，全局错误处理
 instance.interceptors.response.use(
-  response => response.data,
+  response => {
+    return response.data
+  },
   error => {
+    // debugger
     if (error.response) {
       let response = error.response
       if (response.status === 401) {
-        ElMessage.error('登录已过期，请重新登录')
-        localStorage.removeItem('token')
+        // ElMessage.error('登录已过期，请重新登录')
+        userStore().showLogin()
+        localStorage.removeItem('jueblog_token')
+        localStorage.removeItem('jueblog_user_info')
+        // window.location.href = '/login'
       } else {
-        ElMessage.error(response.message)
+        ElMessage.error(response.data.message)
       }
+    } else {
+      ElMessage.error(error.message || '服务器错误')
     }
     return Promise.reject(error)
   }
 )
+
 export default instance
