@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Editor } from '@bytemd/vue-next'
+// import { Editor } from '@bytemd/vue-next'
 import gfm from '@bytemd/plugin-gfm'
 import hig from '@bytemd/plugin-highlight'
 import zoom from '@bytemd/plugin-medium-zoom'

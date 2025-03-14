@@ -27,34 +27,34 @@ const onChange = (e: MouseEvent) => {
   getData()
 }
 const toFollow = () => {
-  toggleFollow({ user_id: uid.value }, res => {
-    is_follow.value = !is_follow.value
-  })
+  // toggleFollow({ user_id: uid.value }, res => {
+  //   is_follow.value = !is_follow.value
+  // })
 }
 const getData = () => {
-  if (tab.value == 'article') {
-    getArticles({ created_by: uid.value }, res => {
-      articles.value = res
-    })
-  }
-  if (tab.value == 'shortmsg') {
-    getShortmsgs({ created_by: uid.value }, res => {
-      short_msgs.value = res
-    })
-  }
+  // if (tab.value == 'article') {
+  //   getArticles({ created_by: uid.value }, res => {
+  //     articles.value = res
+  //   })
+  // }
+  // if (tab.value == 'shortmsg') {
+  //   getShortmsgs({ created_by: uid.value }, res => {
+  //     short_msgs.value = res
+  //   })
+  // }
 }
 onMounted(() => {
   let { id } = route.params
-  uid.value = id as string
-  getUser(uid.value, res => {
-    curuser.value = res
-    getData()
-    if (user_info) {
-      checkFollow(uid.value, res => {
-        is_follow.value = res
-      })
-    }
-  })
+  // uid.value = id as string
+  // getUser(uid.value, res => {
+  //   curuser.value = res
+  //   getData()
+  //   // if (user_info) {
+  //   //   checkFollow(uid.value, res => {
+  //   //     is_follow.value = res
+  //   //   })
+  //   // }
+  // })
 })
 </script>
 

@@ -11,13 +11,19 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@bytemd/plugin-gfm": "^1.21.0",
+    "@bytemd/plugin-highlight": "^1.21.0",
+    "@bytemd/plugin-medium-zoom": "^1.21.0",
+    "@bytemd/plugin-mermaid": "^1.21.0",
     "axios": "^1.8.1",
     "dayjs": "^1.11.13",
     "element-plus": "^2.9.5",
     "less": "^4.2.2",
     "pinia": "^3.0.1",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "showdown": "^2.1.0",
+    "showdown-highlight": "^3.1.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",

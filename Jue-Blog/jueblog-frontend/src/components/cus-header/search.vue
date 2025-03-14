@@ -34,7 +34,7 @@ const onBlur = () => {
   is_focus.value = false
 }
 const toSearch = () => {
-  dom.value.blur()
+  // dom.value.blur()
   // router.push('/search?text=' + text.value)
 }
 </script>

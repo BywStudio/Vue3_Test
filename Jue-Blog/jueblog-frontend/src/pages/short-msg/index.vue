@@ -46,13 +46,13 @@ const toCreate = async () => {
   try {
     loading.value = true
     if (fileList.value.length > 0) {
-      let files = fileList.value.map(row => row.raw)
-      let resimg: any = await uploadImg(files)
-      if (resimg.code == 200) {
-        form.value.images = resimg.data.map(
-          (row: any) => 'https://static.ruidoc.cn' + row.path
-        )
-      }
+      // let files = fileList.value.map(row => row.raw)
+      // let resimg: any = await uploadImg(files)
+      // if (resimg.code == 200) {
+      //   form.value.images = resimg.data.map(
+      //     (row: any) => 'https://static.ruidoc.cn' + row.path
+      //   )
+      // }
     }
     store.createMsg(form.value, res => {
       loading.value = false
@@ -71,7 +71,7 @@ const onScrollEnd = () => {
     return false
   }
   if (loading.value) return
-  loading.value == true
+  // loading.value == true
   filter.value.page = page + 1
   store.getShortmsgs(filter.value)
 }
@@ -79,23 +79,23 @@ const onScrollEnd = () => {
 // 删除图片
 const removeImg = (file: any) => {
   console.log(fileList.value, file)
-  let index = fileList.value.findIndex(r => r.uid == file.uid)
-  if (index >= 0) {
-    fileList.value.splice(index, 1)
-  }
+  // let index = fileList.value.findIndex(r => r.uid == file.uid)
+  // if (index >= 0) {
+  //   fileList.value.splice(index, 1)
+  // }
 }
 
-const imgbtnClick = () => {
-  let dom: HTMLElement = document.querySelector('.el-upload--picture-card')
-  if (dom) {
-    dom.click()
-  }
-}
+// const imgbtnClick = () => {
+//   // let dom: HTMLElement = document.querySelector('.el-upload--picture-card')
+//   if (dom) {
+//     dom.click()
+//   }
+// }
 
 // 上传成功
 const uploadSuccess = (file: any) => {
   if (file.code == 200) {
-    fileList.value.push(file.data.path)
+    // fileList.value.push(file.data.path)
     ElMessage.success('上传成功')
   } else {
     ElMessage.success('上传失败')

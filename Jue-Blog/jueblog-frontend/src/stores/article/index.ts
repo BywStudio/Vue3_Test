@@ -19,9 +19,9 @@ const artiStore = defineStore('article', {
       fun?: (data: any) => void
     ) {
       try {
-        if (params.category == 'all') {
-          params.category = null
-        }
+        // if (params.category == 'all') {
+        //   params.category = null
+        // }
         let page = +params.page || 1
         if (page == 1) {
           this.loading = true
